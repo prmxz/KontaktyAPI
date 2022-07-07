@@ -1,5 +1,8 @@
-﻿using KontaktyAPI.Entities;
+﻿using AutoMapper;
+using KontaktyAPI.Entities;
+using KontaktyAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,27 +14,47 @@ namespace KontaktyAPI.Controllers
     public class ContactsController : ControllerBase
     {
         private readonly ContactDB _dbContext;
+        private readonly IMapper _mapper;
 
-        public ContactsController(ContactDB dbContext)
+        public ContactsController(ContactDB dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
         [HttpGet]
-        public ActionResult<IEnumerable<Contact>> GetAll()
+        public ActionResult<IEnumerable<ContactDTO>> GetAll()
         {
             var contacts = _dbContext
                 .Contacts
+                .Include(r => r.Category)
                 .ToList();
 
-            return Ok(contacts);
+            var contactsDTOs = _mapper.Map<List<ContactDTO>>(contacts);
+
+            return Ok(contactsDTOs);
         }
         
         [HttpGet("{id}")]
-        public ActionResult<Contact> Get([FromRoute]int id)
+        public ActionResult<ContactDTO> Get([FromRoute]int id)
         {
             var contact = _dbContext
                 .Contacts
+                .Include(r => r.Category)
                 .FirstOrDefault(r => r.Id == id);
+
+            if(contact is null)
+            {
+                return NotFound();
+            }
+
+            var contactDTO = _mapper.Map<ContactDTO>(contact);
+            return Ok(contactDTO);
+        }
+
+        [HttpPost]
+        public ActionResult CreateContact([FromBody]CreateContactDTO dto)
+        {
+
         }
     }
 }
