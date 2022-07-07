@@ -1,5 +1,9 @@
 using AutoMapper;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using KontaktyAPI.Entities;
+using KontaktyAPI.Models;
+using KontaktyAPI.Models.Validators;
 using KontaktyAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,13 +34,14 @@ namespace KontaktyAPI
         public void ConfigureServices(IServiceCollection services)
         {
             
-            services.AddControllers();
+            services.AddControllers().AddFluentValidation();
             services.AddDbContext<ContactDB>();
             services.AddScoped<ContactSeeder>();
             services.AddAutoMapper(this.GetType().Assembly);
             services.AddScoped<IContactService, ContactService>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+            services.AddScoped<IValidator<RegisterUserDTO>, RegisterUserDTOValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
