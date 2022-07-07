@@ -15,6 +15,7 @@ namespace KontaktyAPI.Services
         IEnumerable<ContactDTO> GetAll();
         int Create(CreateContactDTO dto);
         bool Delete(int id);
+        bool Update(UpdateContactDTO dto, int id);
     }
     public class ContactService : IContactService
     {
@@ -71,6 +72,24 @@ namespace KontaktyAPI.Services
 
             return true;
 
+        }
+
+        public bool Update(UpdateContactDTO dto, int id)
+        {
+            var contact = _dbContext
+                .Contacts
+                .FirstOrDefault(r => r.Id == id);
+            if (contact is null) return false;
+
+            contact.Name = dto.Name;
+            contact.Surname = dto.Surname;
+            contact.Email = dto.Email;
+            contact.Password = dto.Password;
+            contact.BirthDate = dto.BirthDate;
+            contact.PhoneNumber = dto.PhoneNumber;
+
+            _dbContext.SaveChanges();
+            return true;
         }
     }
 }

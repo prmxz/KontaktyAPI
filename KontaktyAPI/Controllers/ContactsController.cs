@@ -69,5 +69,19 @@ namespace KontaktyAPI.Controllers
 
             return Created($"/api/contact/{id}", null);
         }
+        [HttpPut("{id}")]
+        public ActionResult Update([FromBody]UpdateContactDTO dto, [FromRoute]int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var isUpdated = _contactService.Update(dto, id);
+
+            if (!isUpdated) return NotFound();
+
+            return Ok();
+        }
     }
 }
