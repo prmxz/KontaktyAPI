@@ -4,6 +4,7 @@ using KontaktyAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,6 +35,8 @@ namespace KontaktyAPI
             services.AddScoped<ContactSeeder>();
             services.AddAutoMapper(this.GetType().Assembly);
             services.AddScoped<IContactService, ContactService>();
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
