@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using KontaktyAPI.Entities;
 using KontaktyAPI.Models;
+using KontaktyAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,23 +14,32 @@ namespace KontaktyAPI.Controllers
     [Route("api/contact")]
     public class ContactsController : ControllerBase
     {
-        private readonly ContactDB _dbContext;
-        private readonly IMapper _mapper;
+        private readonly IContactService _contactService;
 
-        public ContactsController(ContactDB dbContext, IMapper mapper)
+        public ContactsController(IContactService contactService)
         {
-            _dbContext = dbContext;
-            _mapper = mapper;
+            _contactService = contactService;
         }
+
+        [HttpDelete("{id}")]
+        public ActionResult Delete([FromRoute]int id)
+        {
+            var isDeleted = _contactService.Delete(id);
+
+            if(isDeleted)
+            {
+                return NoContent();
+            }
+
+            return NotFound();
+        }
+
         [HttpGet]
         public ActionResult<IEnumerable<ContactDTO>> GetAll()
         {
-            var contacts = _dbContext
-                .Contacts
-                .Include(r => r.Category)
-                .ToList();
 
-            var contactsDTOs = _mapper.Map<List<ContactDTO>>(contacts);
+            var contactsDTOs = _contactService.GetAll();
+
 
             return Ok(contactsDTOs);
         }
@@ -37,24 +47,27 @@ namespace KontaktyAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult<ContactDTO> Get([FromRoute]int id)
         {
-            var contact = _dbContext
-                .Contacts
-                .Include(r => r.Category)
-                .FirstOrDefault(r => r.Id == id);
+            var contact = _contactService.GetById(id);
 
             if(contact is null)
             {
                 return NotFound();
             }
 
-            var contactDTO = _mapper.Map<ContactDTO>(contact);
-            return Ok(contactDTO);
+            return Ok(contact);
         }
 
         [HttpPost]
         public ActionResult CreateContact([FromBody]CreateContactDTO dto)
         {
-            return null;
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var id = _contactService.Create(dto);
+
+            return Created($"/api/contact/{id}", null);
         }
     }
 }

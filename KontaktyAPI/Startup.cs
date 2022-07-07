@@ -1,5 +1,6 @@
 using AutoMapper;
 using KontaktyAPI.Entities;
+using KontaktyAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +33,7 @@ namespace KontaktyAPI
             services.AddDbContext<ContactDB>();
             services.AddScoped<ContactSeeder>();
             services.AddAutoMapper(this.GetType().Assembly);
+            services.AddScoped<IContactService, ContactService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
