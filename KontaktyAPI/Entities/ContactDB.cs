@@ -12,9 +12,20 @@ namespace KontaktyAPI.Entities
             "Server=(localdb)\\mssqllocaldb;Database=ContactDB;Trusted_Connection=True;";
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<User>()
+                .Property(u => u.Email)
+                .IsRequired();
+
+            modelBuilder.Entity<Role>()
+                .Property(u => u.Name)
+                .IsRequired();
+
             modelBuilder.Entity<Contact>()
                 .Property(r => r.Name)
                 .IsRequired()
