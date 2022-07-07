@@ -54,7 +54,7 @@ namespace KontaktyAPI.Controllers
         [HttpPost]
         public ActionResult CreateContact([FromBody]CreateContactDTO dto)
         {
-
+            return null;
         }
     }
 }
