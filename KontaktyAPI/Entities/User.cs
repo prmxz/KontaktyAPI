@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace KontaktyAPI.Entities
 {
-    public class User
+    public class User                   // Used to create User Table with Entity Framework
     {
         public int Id { get; set; }
         public string Email { get; set; }

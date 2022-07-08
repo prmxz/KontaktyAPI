@@ -15,7 +15,7 @@ namespace KontaktyAPI.Entities
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)      //Requirements of database's model for given Tables
         {
 
             modelBuilder.Entity<User>()

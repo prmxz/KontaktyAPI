@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KontaktyAPI.Models
 {
-    public class UpdateContactDTO
+    public class UpdateContactDTO               //Data Transfer Object(DTO) for modifying existing Contacs table content
     {
         [Required]
         [MaxLength(15)]

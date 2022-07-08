@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace KontaktyAPI.Models
 {
-    public class LoginDTO
+    public class LoginDTO                   //Data Transfer Object(DTO) for login credentials
     {
         public string Email { get; set; }
         public string Password { get; set; }

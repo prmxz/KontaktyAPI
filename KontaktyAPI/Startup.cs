@@ -60,7 +60,7 @@ namespace KontaktyAPI
             services.AddControllers().AddFluentValidation();
             services.AddDbContext<ContactDB>();
             services.AddScoped<ContactSeeder>();
-            services.AddAutoMapper(this.GetType().Assembly);
+            services.AddAutoMapper(this.GetType().Assembly);            //Added services to make additional functions work
             services.AddScoped<IContactService, ContactService>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();

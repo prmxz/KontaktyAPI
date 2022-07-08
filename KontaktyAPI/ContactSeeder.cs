@@ -15,12 +15,12 @@ namespace KontaktyAPI
         }
         public void Seed()
         {
-            if(_dbContext.Database.CanConnect())
+            if(_dbContext.Database.CanConnect())                //if connection to database is successful
             {
                 if(!_dbContext.Roles.Any())
                 {
                     var roles = GetRoles();
-                    _dbContext.Roles.AddRange(roles);
+                    _dbContext.Roles.AddRange(roles);                       //if respective tables are empty, fill them with corresponding values
                     _dbContext.SaveChanges();
                 }
                 if(!_dbContext.Contacts.Any())
@@ -38,16 +38,16 @@ namespace KontaktyAPI
             {
                 new Role()
                 {
-                    Name = "User"
+                    Name = "Private"                            // Initial filling Roles Table
                 },
                 new Role()
                 {
-                    Name = "Admin"
+                    Name = "Work"
                 }
             };
             return roles;
         }
-        private IEnumerable<Contact> GetContacts()
+        private IEnumerable<Contact> GetContacts()                  //Initial filling Contacts Table
         {
             var contacts = new List<Contact>()
             {
@@ -62,13 +62,13 @@ namespace KontaktyAPI
                     Category = new Category()
                     {
                         Role = "Boss"
-                    }
+                    }                                                           
                 },
                 new Contact()
                 {
                     Name = "Jacob",
                     Surname = "Nowak",
-                    Email = "lukdembo@mail.com",
+                    Email = "jnow@mail.com",
                     Password = "PASSWORd321!",
                     PhoneNumber = "987654321",
                     BirthDate = "20-09-1984",

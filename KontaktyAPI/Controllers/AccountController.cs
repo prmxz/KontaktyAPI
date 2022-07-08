@@ -11,7 +11,7 @@ namespace KontaktyAPI.Controllers
 
     [Route("api/account")]
     [ApiController]
-    public class AccountController : ControllerBase
+    public class AccountController : ControllerBase                                 //controller managing new Accounts able to login, methods logic in AccountService class
     {
         private readonly IAccountService _accountService;
 
@@ -21,14 +21,14 @@ namespace KontaktyAPI.Controllers
         }
 
         [HttpPost("register")]
-        public ActionResult RegisterUser([FromBody]RegisterUserDTO dto)
+        public ActionResult RegisterUser([FromBody]RegisterUserDTO dto)                 //registering new user
         {
             _accountService.RegisterUser(dto);
             return Ok();
         }
 
         [HttpPost("login")]
-        public ActionResult Login([FromBody]LoginDTO dto)
+        public ActionResult Login([FromBody]LoginDTO dto)                               //logging existing user
         {
             string token = _accountService.GenerateJwt(dto);
             return Ok(token);

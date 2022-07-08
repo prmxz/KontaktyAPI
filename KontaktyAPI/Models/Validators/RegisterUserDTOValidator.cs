@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KontaktyAPI.Models.Validators
 {
-    public class RegisterUserDTOValidator : AbstractValidator<RegisterUserDTO>
+    public class RegisterUserDTOValidator : AbstractValidator<RegisterUserDTO>          //Validator for Data Transfer Object(DTO) for registering new User
     {
         public RegisterUserDTOValidator(ContactDB dbContext)
         {
@@ -24,10 +24,10 @@ namespace KontaktyAPI.Models.Validators
             RuleFor(x => x.Email)
                 .Custom((value, context) =>
                 {
-                    var emailUsed = dbContext.Users.Any(u => u.Email == value);
+                    var emailUsed = dbContext.Users.Any(u => u.Email == value);             //Guarantee that email is unique and is compatible with email address format
                     if (emailUsed)
                     {
-                        context.AddFailure("Email", "Email already used");
+                        context.AddFailure("Email", "Email already used");                  //if wrong email is given, the API returns text message
                     }
                 });
         }

@@ -17,7 +17,7 @@ namespace KontaktyAPI.Services
         bool Delete(int id);
         bool Update(UpdateContactDTO dto, int id);
     }
-    public class ContactService : IContactService
+    public class ContactService : IContactService           //class holding ContactController's methods' logic
     {
         private readonly ContactDB _dbContext;
         private readonly IMapper _mapper;

@@ -17,7 +17,7 @@ namespace KontaktyAPI.Services
         void RegisterUser(RegisterUserDTO dto);
         string GenerateJwt(LoginDTO dto);
     }
-    public class AccountService : IAccountService
+    public class AccountService : IAccountService                   //class holding AccountController's methods' logic
     {
         private readonly ContactDB _dbContext;
         private readonly IPasswordHasher<User> _passwordHasher;
@@ -45,7 +45,7 @@ namespace KontaktyAPI.Services
             _dbContext.SaveChanges();
         }
 
-        public string GenerateJwt(LoginDTO dto)
+        public string GenerateJwt(LoginDTO dto)                                             //generating Jwt token used to verifying login session for User
         {
             var user = _dbContext.Users.FirstOrDefault(u => u.Email == dto.Email);
 

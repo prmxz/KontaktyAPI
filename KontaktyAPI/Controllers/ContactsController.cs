@@ -14,7 +14,7 @@ namespace KontaktyAPI.Controllers
 {
     [Route("api/contact")]
     [Authorize]
-    public class ContactsController : ControllerBase
+    public class ContactsController : ControllerBase            //controller managing Contacts table, methods logic in ContactService class
     {
         private readonly IContactService _contactService;
 
@@ -24,7 +24,7 @@ namespace KontaktyAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult Delete([FromRoute]int id)
+        public ActionResult Delete([FromRoute]int id)                               //deleting Contact by id 
         {
             var isDeleted = _contactService.Delete(id);
 
@@ -38,7 +38,7 @@ namespace KontaktyAPI.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult<IEnumerable<ContactDTO>> GetAll()
+        public ActionResult<IEnumerable<ContactDTO>> GetAll()                       // displaying all Contacts
         {
 
             var contactsDTOs = _contactService.GetAll();
@@ -48,7 +48,7 @@ namespace KontaktyAPI.Controllers
         }
         
         [HttpGet("{id}")]
-        [AllowAnonymous]
+        [AllowAnonymous]                                                            // displaying chosen Contact by id 
         public ActionResult<ContactDTO> Get([FromRoute]int id)
         {
             var contact = _contactService.GetById(id);
@@ -62,7 +62,7 @@ namespace KontaktyAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateContact([FromBody]CreateContactDTO dto)
+        public ActionResult CreateContact([FromBody]CreateContactDTO dto)                   //Creating new Contact
         {
             if(!ModelState.IsValid)
             {
@@ -74,7 +74,7 @@ namespace KontaktyAPI.Controllers
             return Created($"/api/contact/{id}", null);
         }
         [HttpPut("{id}")]
-        public ActionResult Update([FromBody]UpdateContactDTO dto, [FromRoute]int id)
+        public ActionResult Update([FromBody]UpdateContactDTO dto, [FromRoute]int id)               //Modifying/Updating Contact chosen by id 
         {
             if (!ModelState.IsValid)
             {
