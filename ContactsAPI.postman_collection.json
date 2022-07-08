@@ -1,0 +1,220 @@
+{
+	"info": {
+		"_postman_id": "eb02f491-b080-47bf-80b2-5e52547d4e67",
+		"name": "ContactsAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Contacts",
+			"item": [
+				{
+					"name": "AddContact",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiICIsImV4cCI6MTY1ODU1NDIyMywiaXNzIjoiaHR0cDovL2NvbnRhY3RhcGkuY29tIiwiYXVkIjoiaHR0cDovL2NvbnRhY3RhcGkuY29tIn0.s7ojxF1YWA8gHpvYKPWs4_5A6zr9ubaI2FisPqDFh-c",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\": \"CategoryIdTest\",\r\n    \"Surname\": \"TestCategory\",\r\n    \"Email\": \"cattest123@mailoo.com\",\r\n    \"Password\": \"Cathegory\",\r\n    \"PhoneNumber\": \"735471231\",\r\n    \"BirthDate\": \"28-12-1950\",\r\n    \"Category\": \"Employee\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/contact/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"contact",
+								""
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/contact",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"contact"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/contact/4",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"contact",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditByID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\": \"FinalTest\",\r\n    \"Surname\": \"FinalE\",\r\n    \"Email\": \"edited12@test.com\",\r\n    \"Password\": \"Ed1tpassword\",\r\n    \"PhoneNumber\": \"787878787\",\r\n    \"BirthDate\": \"11-11-1900\",\r\n    \"Category\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/contact/23",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"contact",
+								"23"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteByID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/contact/13",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"contact",
+								"13"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "RegisterNewUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"logintest@test.com\",\r\n    \"password\": \"loginpw123\",\r\n    \"confirmPassword\": \"loginpw123\",\r\n    \"phoneNumber\": \"512215512\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/account/register",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"account",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LoginUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"logintest@test.com\",\r\n    \"password\": \"loginpw123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/account/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"account",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
