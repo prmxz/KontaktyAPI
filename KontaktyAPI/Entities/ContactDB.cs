@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace KontaktyAPI.Entities
 {
+    /// <summary>
+    /// Creating database context
+    /// </summary>
     public class ContactDB : DbContext
     {
         private string _connectionString =
@@ -15,7 +18,11 @@ namespace KontaktyAPI.Entities
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)      //Requirements of database's model for given Tables
+        /// <summary>
+        /// //Requirements of database's model for given Tables
+        /// </summary>
+        /// <param name="modelBuilder"></param>
+        protected override void OnModelCreating(ModelBuilder modelBuilder)      
         {
 
             modelBuilder.Entity<User>()

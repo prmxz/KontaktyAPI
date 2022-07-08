@@ -6,7 +6,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KontaktyAPI.Entities
 {
-    public class Contact                        // Used to create Contact Table with Entity Framework
+    /// <summary>
+    /// // Used to create Contact Table with Entity Framework
+    /// </summary>
+    public class Contact                        
     {
         public int Id { get; set; }
         public string Name { get; set; }

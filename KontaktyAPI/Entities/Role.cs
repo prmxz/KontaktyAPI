@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 
 namespace KontaktyAPI.Entities
 {
-    public class Role               // Used to create Role Table with Entity Framework
+    /// <summary>
+    /// // Used to create Role Table with Entity Framework
+    /// </summary>
+    public class Role               
     {
         public int Id { get; set; }
         public string Name { get; set; }

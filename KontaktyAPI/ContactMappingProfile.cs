@@ -11,6 +11,9 @@ namespace KontaktyAPI
     public class ContactMappingProfile : Profile
     {
 
+        /// <summary>
+        /// Mapping profile for mapping Contact from CreateContactDTO or ContactDTO from Contact
+        /// </summary>
         public ContactMappingProfile()
         {
             CreateMap<Contact, ContactDTO>()

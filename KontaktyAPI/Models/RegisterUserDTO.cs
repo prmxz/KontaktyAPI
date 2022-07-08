@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace KontaktyAPI.Models
 {
-    public class RegisterUserDTO                        //Data Transfer Object(DTO) for registering new user with default RoleId provided
+    /// <summary>
+    /// //Data Transfer Object(DTO) for registering new user with default RoleId provided
+    /// </summary>
+    public class RegisterUserDTO                        
     {   
         public string Email { get; set; }
         public string Password { get; set; }

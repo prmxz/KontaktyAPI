@@ -17,7 +17,10 @@ namespace KontaktyAPI.Services
         void RegisterUser(RegisterUserDTO dto);
         string GenerateJwt(LoginDTO dto);
     }
-    public class AccountService : IAccountService                   //class holding AccountController's methods' logic
+    /// <summary>
+    /// //class holding AccountController's methods' logic
+    /// </summary>
+    public class AccountService : IAccountService                   
     {
         private readonly ContactDB _dbContext;
         private readonly IPasswordHasher<User> _passwordHasher;
@@ -29,6 +32,10 @@ namespace KontaktyAPI.Services
             _passwordHasher = passwordHasher;
             _authenticationSettings = authenticationSettings;
         }
+        /// <summary>
+        /// Registration of new User, hashing of attribute "Password" included
+        /// </summary>
+        /// <param name="dto"></param>
         public void RegisterUser(RegisterUserDTO dto)
         {
             var newUser = new User()
@@ -45,7 +52,12 @@ namespace KontaktyAPI.Services
             _dbContext.SaveChanges();
         }
 
-        public string GenerateJwt(LoginDTO dto)                                             //generating Jwt token used to verifying login session for User
+        /// <summary>
+        ///  //generating Jwt token used to verifying login session for User
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns>Jwt token for login session</returns>
+        public string GenerateJwt(LoginDTO dto)                                            
         {
             var user = _dbContext.Users.FirstOrDefault(u => u.Email == dto.Email);
 

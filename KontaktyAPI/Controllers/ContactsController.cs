@@ -12,9 +12,12 @@ using System.Threading.Tasks;
 
 namespace KontaktyAPI.Controllers
 {
+    /// <summary>
+    /// controller managing Contacts table, methods logic in ContactService class
+    /// </summary>
     [Route("api/contact")]
     [Authorize]
-    public class ContactsController : ControllerBase            //controller managing Contacts table, methods logic in ContactService class
+    public class ContactsController : ControllerBase            
     {
         private readonly IContactService _contactService;
 
@@ -23,8 +26,13 @@ namespace KontaktyAPI.Controllers
             _contactService = contactService;
         }
 
+        /// <summary>
+        /// deleting Contact by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>deletes contact with matching id parameter</returns>
         [HttpDelete("{id}")]
-        public ActionResult Delete([FromRoute]int id)                               //deleting Contact by id 
+        public ActionResult Delete([FromRoute]int id)                                
         {
             var isDeleted = _contactService.Delete(id);
 
@@ -36,9 +44,13 @@ namespace KontaktyAPI.Controllers
             return NotFound();
         }
 
+        /// <summary>
+        ///  displaying all Contacts
+        /// </summary>
+        /// <returns>displays all Contacts</returns>
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult<IEnumerable<ContactDTO>> GetAll()                       // displaying all Contacts
+        public ActionResult<IEnumerable<ContactDTO>> GetAll()                       
         {
 
             var contactsDTOs = _contactService.GetAll();
@@ -46,9 +58,14 @@ namespace KontaktyAPI.Controllers
 
             return Ok(contactsDTOs);
         }
-        
+
+        /// <summary>
+        ///  displaying chosen Contact by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>display Contact with matching id parameter</returns>
         [HttpGet("{id}")]
-        [AllowAnonymous]                                                            // displaying chosen Contact by id 
+        [AllowAnonymous]                                                             
         public ActionResult<ContactDTO> Get([FromRoute]int id)
         {
             var contact = _contactService.GetById(id);
@@ -61,8 +78,13 @@ namespace KontaktyAPI.Controllers
             return Ok(contact);
         }
 
+        /// <summary>
+        /// Creating new Contact
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns>Creates new Contact at the end of list Contacts</returns>
         [HttpPost]
-        public ActionResult CreateContact([FromBody]CreateContactDTO dto)                   //Creating new Contact
+        public ActionResult CreateContact([FromBody]CreateContactDTO dto)                   
         {
             if(!ModelState.IsValid)
             {
@@ -73,8 +95,14 @@ namespace KontaktyAPI.Controllers
 
             return Created($"/api/contact/{id}", null);
         }
+        /// <summary>
+        /// Modifying/Updating Contact chosen by id parameter
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <param name="id"></param>
+        /// <returns>Modifies contact with matching id with new attributes(if such is given)</returns>
         [HttpPut("{id}")]
-        public ActionResult Update([FromBody]UpdateContactDTO dto, [FromRoute]int id)               //Modifying/Updating Contact chosen by id 
+        public ActionResult Update([FromBody]UpdateContactDTO dto, [FromRoute]int id)               
         {
             if (!ModelState.IsValid)
             {

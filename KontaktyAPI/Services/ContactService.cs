@@ -17,15 +17,27 @@ namespace KontaktyAPI.Services
         bool Delete(int id);
         bool Update(UpdateContactDTO dto, int id);
     }
-    public class ContactService : IContactService           //class holding ContactController's methods' logic
+
+    /// <summary>
+    /// //class holding ContactController's methods' logic
+    /// </summary>
+    public class ContactService : IContactService           
     {
         private readonly ContactDB _dbContext;
         private readonly IMapper _mapper;
+
+
         public ContactService(ContactDB dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;
         }
+
+        /// <summary>
+        /// Displays contact with chosen id parameter, includes Mapping ContactDTO to Contact
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Contact from Contacts table with matching id parameter</returns>
         public ContactDTO GetById(int id)
         {
             var contact = _dbContext
@@ -39,6 +51,10 @@ namespace KontaktyAPI.Services
             return result;
         }
 
+        /// <summary>
+        /// Displays all data from Contacts table from given database
+        /// </summary>
+        /// <returns>Displays all Contacts</returns>
         public IEnumerable<ContactDTO> GetAll()
         {
             var contacts = _dbContext
@@ -51,6 +67,11 @@ namespace KontaktyAPI.Services
             return contactDTOs;
         }
 
+        /// <summary>
+        /// Create new Contact in Contacts table with attributes stated in dto parameter
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns>Create new Contact</returns>
         public int Create(CreateContactDTO dto)
         {
             var contact = _mapper.Map<Contact>(dto);
@@ -60,6 +81,11 @@ namespace KontaktyAPI.Services
             return contact.Id;
         }
 
+        /// <summary>
+        /// Removes Contact (chosen with id parameter) from Contacts table 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Removes Contact with matching id parameter</returns>
         public bool Delete(int id)
         {
             var contact = _dbContext
@@ -74,6 +100,12 @@ namespace KontaktyAPI.Services
 
         }
 
+        /// <summary>
+        /// Modifies Contact chosen with id parameter with data provided in dto parameter
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <param name="id"></param>
+        /// <returns>Updated Contact in Contacts table</returns>
         public bool Update(UpdateContactDTO dto, int id)
         {
             var contact = _dbContext

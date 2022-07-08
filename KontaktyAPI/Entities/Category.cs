@@ -6,7 +6,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KontaktyAPI.Entities
 {
-    public class Category                                   // Used to create Category Table with Entity Framework
+    /// <summary>
+    /// // Used to create Category Table with Entity Framework
+    /// </summary>
+    public class Category                                   
     {
         public int Id { get; set; }
         public string Role { get; set; }

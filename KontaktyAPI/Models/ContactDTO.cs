@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 
 namespace KontaktyAPI.Models
 {
-    public class ContactDTO            //Data Transfer Object(DTO) for projecting Contacts table content
+    /// <summary>
+    /// //Data Transfer Object(DTO) for projecting Contacts table content
+    /// </summary>
+    public class ContactDTO            
     {
         public int Id { get; set; }
         public string Name { get; set; }

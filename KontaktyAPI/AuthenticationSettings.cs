@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 
 namespace KontaktyAPI
 {
-    public class AuthenticationSettings             //Class holding settings which help to create and manage Jwt Token
+    /// <summary>
+    /// //Class holding configuration of Jwt Token
+    /// </summary>
+    public class AuthenticationSettings             
     {
         public string JwtKey { get; set; }
         public int JwtExpireDays { get; set; }

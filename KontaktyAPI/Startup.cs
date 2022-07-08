@@ -57,10 +57,12 @@ namespace KontaktyAPI
                 };
             });
 
+            //Additional services to make functionalities work
+
             services.AddControllers().AddFluentValidation();
             services.AddDbContext<ContactDB>();
             services.AddScoped<ContactSeeder>();
-            services.AddAutoMapper(this.GetType().Assembly);            //Added services to make additional functions work
+            services.AddAutoMapper(this.GetType().Assembly);            
             services.AddScoped<IContactService, ContactService>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
@@ -69,11 +71,14 @@ namespace KontaktyAPI
             var provider = services.BuildServiceProvider();
             var configuration = provider.GetRequiredService<IConfiguration>();
 
+            
+            //prepared for frontend connection
+            
             services.AddCors(options =>
             {
                 var frontendURL = configuration.GetValue<string>("frontend_url");
 
-                options.AddDefaultPolicy(builder =>                                             //front connection
+                options.AddDefaultPolicy(builder =>                                             
                 {
                     builder.WithOrigins(frontendURL).AllowAnyMethod().AllowAnyHeader();
                 });
@@ -92,7 +97,8 @@ namespace KontaktyAPI
             app.UseAuthentication();
             app.UseHttpsRedirection();
 
-            app.UseCors();                              //front connection
+            //frontend connection
+            app.UseCors();                              
 
             app.UseRouting();
             app.UseAuthorization();

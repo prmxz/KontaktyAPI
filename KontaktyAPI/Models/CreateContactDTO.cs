@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace KontaktyAPI.Models
 {
-    public class CreateContactDTO       //Data Transfer Object(DTO) for new entry in Contacts table
+    /// <summary>
+    /// //Data Transfer Object(DTO) for new entry in Contacts table
+    /// </summary>
+    public class CreateContactDTO       
     {
 
         [Required]
