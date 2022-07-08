@@ -97,7 +97,7 @@ namespace KontaktyAPI
             app.UseAuthentication();
             app.UseHttpsRedirection();
 
-            //frontend connection
+            //prepared for frontend connection
             app.UseCors();                              
 
             app.UseRouting();

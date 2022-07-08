@@ -18,7 +18,7 @@ namespace KontaktyAPI.Services
         string GenerateJwt(LoginDTO dto);
     }
     /// <summary>
-    /// //class holding AccountController's methods' logic
+    /// //class holding AccountController methods' logic
     /// </summary>
     public class AccountService : IAccountService                   
     {
@@ -56,7 +56,7 @@ namespace KontaktyAPI.Services
         ///  //generating Jwt token used to verifying login session for User
         /// </summary>
         /// <param name="dto"></param>
-        /// <returns>Jwt token for login session</returns>
+        /// <returns></returns>
         public string GenerateJwt(LoginDTO dto)                                            
         {
             var user = _dbContext.Users.FirstOrDefault(u => u.Email == dto.Email);

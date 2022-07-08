@@ -39,7 +39,7 @@ namespace KontaktyAPI
         /// <summary>
         /// // Initial filling of Roles table
         /// </summary>
-        /// <returns>Fills table Roles with given data</returns>
+        /// <returns></returns>
         private IEnumerable<Role> GetRoles()
         {
             var roles = new List<Role>()
@@ -59,7 +59,7 @@ namespace KontaktyAPI
         /// <summary>
         /// //Initial filling of Contacts table
         /// </summary>
-        /// <returns>Fills table Contacts with given data</returns>
+        /// <returns></returns>
         private IEnumerable<Contact> GetContacts()                  
         {
             var contacts = new List<Contact>()

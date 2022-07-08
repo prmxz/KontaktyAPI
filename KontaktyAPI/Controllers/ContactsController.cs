@@ -30,7 +30,7 @@ namespace KontaktyAPI.Controllers
         /// deleting Contact by id
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>deletes contact with matching id parameter</returns>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public ActionResult Delete([FromRoute]int id)                                
         {
@@ -47,7 +47,7 @@ namespace KontaktyAPI.Controllers
         /// <summary>
         ///  displaying all Contacts
         /// </summary>
-        /// <returns>displays all Contacts</returns>
+        /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
         public ActionResult<IEnumerable<ContactDTO>> GetAll()                       
@@ -60,10 +60,10 @@ namespace KontaktyAPI.Controllers
         }
 
         /// <summary>
-        ///  displaying chosen Contact by id
+        ///  displaying chosen Contact by id parameter
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>display Contact with matching id parameter</returns>
+        /// <returns></returns>
         [HttpGet("{id}")]
         [AllowAnonymous]                                                             
         public ActionResult<ContactDTO> Get([FromRoute]int id)
@@ -79,10 +79,10 @@ namespace KontaktyAPI.Controllers
         }
 
         /// <summary>
-        /// Creating new Contact
+        /// Creates new Contact at the end of list Contacts
         /// </summary>
         /// <param name="dto"></param>
-        /// <returns>Creates new Contact at the end of list Contacts</returns>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult CreateContact([FromBody]CreateContactDTO dto)                   
         {
@@ -96,11 +96,11 @@ namespace KontaktyAPI.Controllers
             return Created($"/api/contact/{id}", null);
         }
         /// <summary>
-        /// Modifying/Updating Contact chosen by id parameter
+        /// Modifies contact with matching id with new attributes(if such is given)
         /// </summary>
         /// <param name="dto"></param>
         /// <param name="id"></param>
-        /// <returns>Modifies contact with matching id with new attributes(if such is given)</returns>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public ActionResult Update([FromBody]UpdateContactDTO dto, [FromRoute]int id)               
         {
