@@ -2,6 +2,7 @@
 using KontaktyAPI.Entities;
 using KontaktyAPI.Models;
 using KontaktyAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 namespace KontaktyAPI.Controllers
 {
     [Route("api/contact")]
+    [Authorize]
     public class ContactsController : ControllerBase
     {
         private readonly IContactService _contactService;
@@ -35,6 +37,7 @@ namespace KontaktyAPI.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult<IEnumerable<ContactDTO>> GetAll()
         {
 
@@ -45,6 +48,7 @@ namespace KontaktyAPI.Controllers
         }
         
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public ActionResult<ContactDTO> Get([FromRoute]int id)
         {
             var contact = _contactService.GetById(id);
