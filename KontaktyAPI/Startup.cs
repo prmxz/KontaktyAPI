@@ -65,8 +65,21 @@ namespace KontaktyAPI
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
             services.AddScoped<IValidator<RegisterUserDTO>, RegisterUserDTOValidator>();
-        }
 
+            var provider = services.BuildServiceProvider();
+            var configuration = provider.GetRequiredService<IConfiguration>();
+
+            services.AddCors(options =>
+            {
+                var frontendURL = configuration.GetValue<string>("frontend_url");
+
+                options.AddDefaultPolicy(builder =>                                             //front connection
+                {
+                    builder.WithOrigins(frontendURL).AllowAnyMethod().AllowAnyHeader();
+                });
+            });
+        }
+            
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ContactSeeder seeder)
         {
@@ -78,6 +91,8 @@ namespace KontaktyAPI
             }
             app.UseAuthentication();
             app.UseHttpsRedirection();
+
+            app.UseCors();                              //front connection
 
             app.UseRouting();
             app.UseAuthorization();
