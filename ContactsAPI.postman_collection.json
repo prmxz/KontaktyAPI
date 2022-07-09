@@ -15,7 +15,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiICIsImV4cCI6MTY1ODU1NDIyMywiaXNzIjoiaHR0cDovL2NvbnRhY3RhcGkuY29tIiwiYXVkIjoiaHR0cDovL2NvbnRhY3RhcGkuY29tIn0.s7ojxF1YWA8gHpvYKPWs4_5A6zr9ubaI2FisPqDFh-c",
+								"value": "Bearer ",
 								"type": "default"
 							}
 						],
